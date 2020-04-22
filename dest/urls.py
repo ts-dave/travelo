@@ -1,0 +1,13 @@
+from django.urls import path
+from . import views
+
+
+app_name = 'dest'
+
+urlpatterns = [
+    path('', views.homepage, name='homepage'),
+    path('about/', views.about, name='aboutpage'),
+    path('destination/', views.destination, name='destination'),
+    path('destination/<int:pk>/', views.destination_detail, name='destination_detail'),
+    path('contact/', views.contact, name='contactpage'),
+]
