@@ -28,6 +28,8 @@ def destination_detail(request, pk):
     }
     return HttpResponse('destination detail page', context)
 
+def register(request):
+    return HttpResponse('Registration Page')
 
 def login(request):
     return HttpResponse('login page')

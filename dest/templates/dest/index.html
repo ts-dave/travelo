@@ -5,7 +5,10 @@
 <head>
     <meta charset="utf-8">
     <meta http-equiv="x-ua-compatible" content="ie=edge">
+    {% block title %}
     <title>Travelo</title>
+    {% endblock title %}
+        
     <meta name="description" content="">
     <meta name="viewport" content="width=device-width, initial-scale=1">
 
@@ -59,8 +62,14 @@
                                             <li><a class="" href="{% url "dest:destination" %}">Destination</a></l/li>
                                             <li><a href="#">Accout <i class="ti-angle-down"></i></a>
                                                 <ul class="submenu">
-                                                        <li><a href="destination_details.html">Login</a></li>
-                                                        <li><a href="elements.html">Sign Up</a></li>
+                                                        
+                                                        
+                                                        {% if user.is_Authenticated %}
+                                                        <li><a href="{% url "dest:logout" %}">Logout</a></li>
+                                                        {% else %}
+                                                        <li><a href="{% url "dest:login" %}">Login</a></li>   
+                                                        {% endif %}
+                                                        <li><a href="{% url "dest:register" %}">Register</a></li>
                                                 </ul>
                                             </li>
                                             <li><a href="{% url "dest:contactpage" %}">Contact</a></li>
