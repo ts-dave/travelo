@@ -123,7 +123,7 @@
                             <div class="slider_text text-center">
                                 <h3>Indonesia</h3>
                                 <p>Pixel perfect design with awesome contents</p>
-                                <a href="#" class="boxed-btn3">Explore Now</a>
+                                <a href="{% url 'dest:destination' %}" class="boxed-btn3">Explore Now</a>
                             </div>
                         </div>
                     </div>
@@ -136,7 +136,7 @@
                             <div class="slider_text text-center">
                                 <h3>Australia</h3>
                                 <p>Pixel perfect design with awesome contents</p>
-                                <a href="{% url "dest:destination" %} class="boxed-btn3">Explore Now</a>
+                                <a href="{% url "dest:destination" %}" class="boxed-btn3">Explore Now</a>
                             </div>
                         </div>
                     </div>
@@ -215,10 +215,10 @@
                 <div class="col-lg-4 col-md-6">
                     <div class="single_destination">
                         <div class="thumb">
-                            <img src="{{country.image}}" alt="">
+                            <img src="{{country.image.url}}" alt="">
                         </div>
                         <div class="content">
-                            <p class="d-flex align-items-center">{{ country.name }} <a href="{% url "dest:destination" %}">  {{country.destination_count}} Places</a> </p>
+                            <p class="d-flex align-items-center">{{ country.name }} <a href="{% url "dest:country_destinations" pk=country.id %}">  {{country.destination_count}} Places</a> </p>
                             
                         </div>
                     </div>
@@ -286,7 +286,7 @@
                 <div class="col-lg-4 col-md-6">
                     <div class="single_place">
                         <div class="thumb">
-                            <img src="{{place.image}}" alt="{{place.name}}" height="197.4" width="350">
+                            <img src="{{place.image.url}}" alt="{{place.name}}" height="197.4" width="350">
                             <a href="{% url "dest:destination_detail" pk=place.id %}" class="prise">${{place.price}}</a>
                         </div>
                         <div class="place_info">

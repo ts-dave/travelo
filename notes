@@ -1,4 +1,1 @@
-1 get some bundle and load your database with sample data 
-2 super charge admin page
-3 write view homepage and substitute html page with dynamic data
-4 substitute other pages with dynamic data and handle functionalities later
+created a model to add day and activities to destinations, added dynamic data to travel destination and destination detail pages
