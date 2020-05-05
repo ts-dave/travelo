@@ -171,18 +171,18 @@
                 </div>
                 <div class="col-lg-9">
                     <div class="search_wrap">
-                        <form class="search_form" action="#">
+                        <form class="search_form" action="search/">
                             <div class="input_field">
-                                <input type="text" placeholder="Where to go?">
+                                <input type="text" placeholder="Where to go?" name="place">
                             </div>
                             <div class="input_field">
-                                <input id="datepicker" placeholder="Date">
+                                <input id="datepicker" placeholder="Date" name="date">
                             </div>
                             <div class="input_field">
-                                <select>
+                                <select name="travel_type">
                                     <option data-display="Travel type">Travel type</option>
-                                    <option value="1">Some option</option>
-                                    <option value="2">Another option</option>
+                                    <option value="inbound">Inbound</option>
+                                    <option value="outbound">Outbound</option>
                                 </select>
                             </div>
                             <div class="search_btn">
@@ -287,7 +287,7 @@
                     <div class="single_place">
                         <div class="thumb">
                             <img src="{{place.image.url}}" alt="{{place.name}}" height="197.4" width="350">
-                            <a href="{% url "dest:destination_detail" pk=place.id %}" class="prise">${{place.price}}</a>
+                            <a href="{% url "dest:destination_detail" pk=place.id %}" class="prise">${{place.inbound_price}}</a>
                         </div>
                         <div class="place_info">
                             <a href="{% url "dest:destination_detail" pk=place.id%}"><h3>{{place.name}}</h3></a>

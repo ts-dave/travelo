@@ -6,16 +6,29 @@ import random
 
 def homepage(request):
     popular_countries = Country.objects.filter(popular=True)
-    popular_countries = random.choices(popular_countries, k=6)
+    popular_countries = random.sample(list(popular_countries), k=6)
     
     popular_places = Destination.objects.filter(popular=True)
-    popular_places = random.choices(popular_places, k=6)
+    popular_places = random.sample(list(popular_places), k=6)
     
     context = {
         'popular_countries': popular_countries,
         'popular_places': popular_places,
    }
     return render(request, 'dest/index.html', context)
+
+
+def search(request):
+    place = request.GET['place']
+    date = request.GET['date']
+    travel_type = request.GET.get('travel_type')
+    
+    dests = Destination.objects.filter(name__contains=place)
+    context = {
+        'dests': dests,
+        'travel_type': travel_type,
+    }
+    return render(request, 'dest/travel_destination.html', context)
 
 
 def country_destinations(request, pk):
@@ -31,8 +44,8 @@ def about(request):
 
 
 def destination(request):
-    destinations = list(Destination.objects.all())
-    dests = random.choices(destinations, k=6)
+    destinations = Destination.objects.all()
+    dests = random.sample(list(destinations), k=6)
     context = {
         'dests': dests,
     }

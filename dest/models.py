@@ -16,13 +16,15 @@ class Country(models.Model):
 
     def __str__(self):
         return self.name
-
+    
+    
 class Destination(models.Model):
     name = models.CharField(max_length=120)
     country = models.ForeignKey(Country, on_delete=models.CASCADE)
     image = models.ImageField(blank=True, null=True)
     rating = models.IntegerField()
-    price = models.IntegerField()
+    inbound_price = models.IntegerField(default=100)
+    outbound_price = models.IntegerField(default=500)
     description = models.TextField()
     popular = models.BooleanField(default=False)
     travel_date = models.DateField(default=(timezone.now() + dt.timedelta(days=7)))
