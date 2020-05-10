@@ -125,7 +125,7 @@
                             <div class="single_place">
                                 <div class="thumb">
                                     <img src="{{dest.image.url}}" alt="" width="350" height="197.4">
-                                    <a href="{% url 'dest:destination_detail' pk=dest.id %}" class="prise">${{dest.price}}</a>
+                                    <a href="{% url 'dest:destination_detail' pk=dest.id %}" class="prise">${{dest.inbound_price}}</a>
                                 </div>
                                 <div class="place_info">
                                     <a href="{% url 'dest:destination_detail' pk=dest.id %}"><h3>{{dest.name}}</h3></a>

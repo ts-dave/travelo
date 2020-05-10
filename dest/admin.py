@@ -1,9 +1,9 @@
 from django.contrib import admin
-from .models import *
+from .models import Country, Destination, Day, Subscriber, Review
 
 
 class DestinatinationAdmin(admin.ModelAdmin):
-    list_display = ('name', 'country', 'travel_date', 'inbound_price', 'completed')
+    list_display = ('name', 'country', 'travel_date', 'inbound_price', 'outbound_price', 'completed')
     list_per_page = 40
     date_hierarchy = 'travel_date'
     search_fields = ('name',)
@@ -18,3 +18,4 @@ admin.site.register(Country, CountryAdmin)
 admin.site.register(Destination, DestinatinationAdmin)
 admin.site.register(Review)
 admin.site.register(Day)
+admin.site.register(Subscriber)

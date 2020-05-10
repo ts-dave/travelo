@@ -6,7 +6,7 @@
     <meta charset="utf-8">
     <meta http-equiv="x-ua-compatible" content="ie=edge">
     {% block title %}
-    <title>Travelo</title>
+    <title>Travelo | Home</title>
     {% endblock title %}
         
     <meta name="description" content="">
@@ -246,10 +246,11 @@
                         </div>
                         <div class="col-lg-7">
                             <div class="mail_form">
-                                <div class="row no-gutters">
+                                <form class="row no-gutters" method="POST">
+                                    {% csrf_token %}
                                     <div class="col-lg-9 col-md-8">
                                         <div class="newsletter_field">
-                                            <input type="email" placeholder="Your mail" >
+                                            {{ form.email }}
                                         </div>
                                     </div>
                                     <div class="col-lg-3 col-md-4">
@@ -257,7 +258,7 @@
                                             <button class="boxed-btn4 " type="submit" >Subscribe</button>
                                         </div>
                                     </div>
-                                </div>
+                                </form>
                             </div>
                         </div>
                     </div>
@@ -299,11 +300,11 @@
                                      <i class="fa fa-star"></i> 
                                      <i class="fa fa-star"></i> 
                                      <i class="fa fa-star"></i>
-                                     <a href="#">(20 Review)</a>
+                                     <a href="#">({{place.review_set.count}} Reviews)</a>
                                 </span>
                                 <div class="days">
                                     <i class="fa fa-clock-o"></i>
-                                    <a href="#">5 Days</a>
+                                    <a href="#">{{place.day_set.count}} Days</a>
                                 </div>
                             </div>
                         </div>

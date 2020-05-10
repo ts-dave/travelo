@@ -1,10 +1,19 @@
 from django.shortcuts import render, HttpResponse
 from django.shortcuts import get_object_or_404
-from .models import *
+from .forms import SubscriberForm
+from .models import Country, Destination, Day, Subscriber
 import random
 
 
 def homepage(request):
+    form = SubscriberForm()
+    
+    if request.method == 'POST':
+        form = SubscriberForm(request.POST)
+        print(form)
+        if form.is_valid():
+            form.save()
+    
     popular_countries = Country.objects.filter(popular=True)
     popular_countries = random.sample(list(popular_countries), k=6)
     
@@ -12,6 +21,7 @@ def homepage(request):
     popular_places = random.sample(list(popular_places), k=6)
     
     context = {
+        'form': form,
         'popular_countries': popular_countries,
         'popular_places': popular_places,
    }
@@ -20,7 +30,7 @@ def homepage(request):
 
 def search(request):
     place = request.GET['place']
-    date = request.GET['date']
+    #date = request.GET['date']
     travel_type = request.GET.get('travel_type')
     
     dests = Destination.objects.filter(name__contains=place)

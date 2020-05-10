@@ -7,6 +7,7 @@ class Country(models.Model):
     name = models.CharField(max_length=120)
     image = models.ImageField(null=True, blank=True)
     popular = models.BooleanField(default=False)
+
     class Meta:
         verbose_name_plural = 'Countries'
 
@@ -30,6 +31,7 @@ class Destination(models.Model):
     travel_date = models.DateField(default=(timezone.now() + dt.timedelta(days=7)))
     completed = models.BooleanField(default=False)
     date_completed = models.DateField(auto_now=True, blank=True, null=True)
+    
     class Meta:
         ordering = ['travel_date']
         
@@ -41,6 +43,7 @@ class Destination(models.Model):
     def __str__(self):
         return f'{self.name} ({self.country})'
 
+
 class Day(models.Model):
     destination = models.ForeignKey(Destination, on_delete=models.CASCADE)
     day = models.SmallIntegerField(blank=True, null=True)
@@ -51,9 +54,24 @@ class Day(models.Model):
         
     def __str__(self):
         return f'{self.destination} - Day {self.day}'
+
     
+class Subscriber(models.Model):
+    email = models.EmailField()
+    date_subscribed = models.DateTimeField(auto_now=True)
     
+    def __str__(self):
+        return f"{self.email} - ({self.date_subscribed})"
+
     
 class Review(models.Model):
     destination = models.ForeignKey(Destination, on_delete=models.CASCADE)
     message = models.TextField()
+    date = models.DateTimeField(auto_now=True)
+    
+    class Meta:
+        ordering = ['-date',]
+        
+    def __str__(self):
+        return f"{self.destination} - {self.date}"
+
