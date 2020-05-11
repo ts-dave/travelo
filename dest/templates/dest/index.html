@@ -444,23 +444,24 @@
                 </div>
             </div>
             <div class="row">
+                {% for recent in recents %}
                 <div class="col-lg-4 col-md-6">
                     <div class="single_trip">
                         <div class="thumb">
-                            <img src="{% static 'dest/img/trip/1.png' %}" alt="">
+                            <img src="{{ recent.image.url }}" alt="">
                         </div>
                         <div class="info">
                             <div class="date">
-                                <span>Oct 12, 2019</span>
+                                <span>{{ recent.date_completed }}</span>
                             </div>
-                            <a href="#">
-                                <h3>Journeys Are Best Measured In
-                                    New Friends</h3>
+                            <a href="{% url 'dest:destination_detail' pk=recent.id %}">
+                                <h3>{{ recent.name }}</h3>
                             </a>
                         </div>
                     </div>
                 </div>
-                <div class="col-lg-4 col-md-6">
+                {% endfor %}
+                <!-- <div class="col-lg-4 col-md-6">
                     <div class="single_trip">
                         <div class="thumb">
                             <img src="{% static 'dest/img/trip/2.png' %}" alt="">
@@ -490,8 +491,8 @@
                                     New Friends</h3>
                             </a>
                         </div>
-                    </div>
-                </div>
+                    </div> -->
+                <!-- </div> -->
             </div>
         </div>
     </div>

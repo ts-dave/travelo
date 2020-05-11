@@ -1,5 +1,6 @@
-from django.shortcuts import render, HttpResponse
+from django.shortcuts import render, HttpResponse, redirect
 from django.shortcuts import get_object_or_404
+from django.utils import timezone
 from .forms import SubscriberForm
 from .models import Country, Destination, Day, Subscriber
 import random
@@ -13,15 +14,20 @@ def homepage(request):
         print(form)
         if form.is_valid():
             form.save()
+        return redirect('/')
     
-    popular_countries = Country.objects.filter(popular=True)
+    popular_countries = Country.objects.filter(popular=True).prefetch_related('destination_set')
     popular_countries = random.sample(list(popular_countries), k=6)
     
-    popular_places = Destination.objects.filter(popular=True)
+    popular_places = Destination.objects.filter(popular=True).prefetch_related('day_set','review_set')
     popular_places = random.sample(list(popular_places), k=6)
+    
+    recents = Destination.objects.filter(completed=True)
+    # recent = random.sample(list(recent), k=3)
     
     context = {
         'form': form,
+        'recents': recents,
         'popular_countries': popular_countries,
         'popular_places': popular_places,
    }
