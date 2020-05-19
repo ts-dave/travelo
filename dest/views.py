@@ -11,7 +11,7 @@ def homepage(request):
     
     if request.method == 'POST':
         form = SubscriberForm(request.POST)
-        print(form)
+
         if form.is_valid():
             form.save()
         return redirect('/')
@@ -23,7 +23,7 @@ def homepage(request):
     popular_places = random.sample(list(popular_places), k=6)
     
     recents = Destination.objects.filter(completed=True)
-    # recent = random.sample(list(recent), k=3)
+    # recent = random.sample(list(recent), k=3)ls
     
     context = {
         'form': form,
@@ -74,18 +74,6 @@ def destination_detail(request, pk):
         'destination': destination,
     }
     return render(request, 'dest/destination_details.html', context)
-
-
-def register(request):
-    return HttpResponse('Registration Page')
-
-
-def login(request):
-    return HttpResponse('login page')
-
-
-def logout(request):
-    return HttpResponse('logout page')
 
 
 def contact(request):

@@ -60,16 +60,18 @@
                                             <li><a class="active" href="{% url "dest:homepage" %}">home</a></li>
                                             <li><a href="{% url "dest:aboutpage" %}">About</a></li>
                                             <li><a class="" href="{% url "dest:destination" %}">Destination</a></l/li>
+                                            {% if user.is_authenticated %}
+                                            <li><a href="#">{{ request.user }} <i class="ti-angle-down"></i></a>
+                                            {% else %}
                                             <li><a href="#">Accout <i class="ti-angle-down"></i></a>
+                                            {% endif %}
                                                 <ul class="submenu">
-                                                        
-                                                        
-                                                        {% if user.is_Authenticated %}
-                                                        <li><a href="{% url "dest:logout" %}">Logout</a></li>
+                                                        {% if user.is_authenticated %}
+                                                        <li><a href="{% url "accounts:logout" %}">Logout</a></li>
                                                         {% else %}
-                                                        <li><a href="{% url "dest:login" %}">Login</a></li>   
+                                                        <li><a href="{% url "accounts:login" %}">Login</a></li>
+                                                        <li><a href="{% url "accounts:register" %}">Register</a></li> 
                                                         {% endif %}
-                                                        <li><a href="{% url "dest:register" %}">Register</a></li>
                                                 </ul>
                                             </li>
                                             <li><a href="{% url "dest:contactpage" %}">Contact</a></li>
